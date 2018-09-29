@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.valhallagame.common.DefaultServicePortMappings;
 import com.valhallagame.common.RestCaller;
 import com.valhallagame.common.RestResponse;
+import com.valhallagame.currencyserviceclient.message.LockCurrencyParameter;
 import com.valhallagame.recipeserviceclient.message.AddRecipeParameter;
 import com.valhallagame.recipeserviceclient.message.ClaimRecipeParameter;
 import com.valhallagame.recipeserviceclient.message.GetRecipesParameter;
@@ -11,7 +12,6 @@ import com.valhallagame.wardrobeserviceclient.message.WardrobeItem;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 public class RecipeServiceClient {
 	private static RecipeServiceClient recipeServiceClient;
@@ -47,7 +47,7 @@ public class RecipeServiceClient {
 				input, String.class);
 	}
 
-	public RestResponse<String> claimRecipe(String characterName, WardrobeItem recipe, Map<String, String> currencies) throws IOException {
+    public RestResponse<String> claimRecipe(String characterName, WardrobeItem recipe, List<LockCurrencyParameter.Currency> currencies) throws IOException {
 		ClaimRecipeParameter claimRecipeParameter = new ClaimRecipeParameter(characterName, recipe, currencies);
 		return restCaller.postCall(recipeServiceServerUrl + "/v1/recipe/claim",
 				claimRecipeParameter, String.class);
