@@ -1,6 +1,7 @@
 package com.valhallagame.recipeserviceclient.message;
 
 import com.valhallagame.common.validation.CheckLowercase;
+import com.valhallagame.wardrobeserviceclient.message.WardrobeItem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,5 @@ public class AddRecipeParameter {
     private String characterName;
 
     @NotNull
-    private String recipe;
+    private WardrobeItem recipe;
 }
