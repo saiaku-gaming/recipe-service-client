@@ -42,9 +42,9 @@ public class RecipeServiceClient {
 				});
 	}
 
-	public RestResponse<String> addRecipe(AddRecipeParameter input) throws IOException {
+	public RestResponse<String> addRecipe(String characterName, WardrobeItem recipe) throws IOException {
 		return restCaller.postCall(recipeServiceServerUrl + "/v1/recipe/add",
-				input, String.class);
+				new AddRecipeParameter(characterName, recipe), String.class);
 	}
 
     public RestResponse<String> claimRecipe(String characterName, WardrobeItem recipe, List<LockCurrencyParameter.Currency> currencies) throws IOException {
