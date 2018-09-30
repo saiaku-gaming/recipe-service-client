@@ -8,6 +8,7 @@ import com.valhallagame.currencyserviceclient.message.LockCurrencyParameter;
 import com.valhallagame.recipeserviceclient.message.AddRecipeParameter;
 import com.valhallagame.recipeserviceclient.message.ClaimRecipeParameter;
 import com.valhallagame.recipeserviceclient.message.GetRecipesParameter;
+import com.valhallagame.recipeserviceclient.model.RecipeData;
 import com.valhallagame.wardrobeserviceclient.message.WardrobeItem;
 
 import java.io.IOException;
@@ -36,9 +37,9 @@ public class RecipeServiceClient {
 		return recipeServiceClient;
 	}
 
-	public RestResponse<List<String>> getRecipes(String username) throws IOException {
+    public RestResponse<List<RecipeData>> getRecipes(String username) throws IOException {
 		return restCaller.postCall(recipeServiceServerUrl + "/v1/recipe/get",
-				new GetRecipesParameter(username), new TypeReference<List<String>>() {
+                new GetRecipesParameter(username), new TypeReference<List<RecipeData>>() {
 				});
 	}
 
@@ -52,6 +53,4 @@ public class RecipeServiceClient {
 		return restCaller.postCall(recipeServiceServerUrl + "/v1/recipe/claim",
 				claimRecipeParameter, String.class);
 	}
-
-
 }
