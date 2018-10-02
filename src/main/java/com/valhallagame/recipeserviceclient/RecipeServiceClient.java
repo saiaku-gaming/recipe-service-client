@@ -1,8 +1,8 @@
 package com.valhallagame.recipeserviceclient;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.valhallagame.common.AbstractServiceClient;
 import com.valhallagame.common.DefaultServicePortMappings;
-import com.valhallagame.common.RestCaller;
 import com.valhallagame.common.RestResponse;
 import com.valhallagame.currencyserviceclient.message.LockCurrencyParameter;
 import com.valhallagame.recipeserviceclient.message.AddRecipeParameter;
@@ -14,43 +14,39 @@ import com.valhallagame.wardrobeserviceclient.message.WardrobeItem;
 import java.io.IOException;
 import java.util.List;
 
-public class RecipeServiceClient {
+public class RecipeServiceClient extends AbstractServiceClient {
 	private static RecipeServiceClient recipeServiceClient;
 
-	private String recipeServiceServerUrl = "http://localhost:" + DefaultServicePortMappings.RECIPE_SERVICE_PORT;
-	private RestCaller restCaller;
-
 	private RecipeServiceClient() {
-		restCaller = new RestCaller();
+		serviceServerUrl = "http://localhost:" + DefaultServicePortMappings.RECIPE_SERVICE_PORT;
 	}
 
-	public static void init(String recipeServiceServerUrl) {
+	public static void init(String serviceServerUrl) {
 		RecipeServiceClient client = get();
-		client.recipeServiceServerUrl = recipeServiceServerUrl;
+		client.serviceServerUrl = serviceServerUrl;
 	}
 
 	public static RecipeServiceClient get() {
 		if (recipeServiceClient == null) {
 			recipeServiceClient = new RecipeServiceClient();
 		}
-
 		return recipeServiceClient;
 	}
 
     public RestResponse<List<RecipeData>> getRecipes(String username) throws IOException {
-		return restCaller.postCall(recipeServiceServerUrl + "/v1/recipe/get",
+		return restCaller.postCall(serviceServerUrl + "/v1/recipe/get",
                 new GetRecipesParameter(username), new TypeReference<List<RecipeData>>() {
 				});
 	}
 
 	public RestResponse<String> addRecipe(String characterName, WardrobeItem recipe) throws IOException {
-		return restCaller.postCall(recipeServiceServerUrl + "/v1/recipe/add",
+		return restCaller.postCall(serviceServerUrl + "/v1/recipe/add",
 				new AddRecipeParameter(characterName, recipe), String.class);
 	}
 
     public RestResponse<String> claimRecipe(String characterName, WardrobeItem recipe, List<LockCurrencyParameter.Currency> currencies) throws IOException {
 		ClaimRecipeParameter claimRecipeParameter = new ClaimRecipeParameter(characterName, recipe, currencies);
-		return restCaller.postCall(recipeServiceServerUrl + "/v1/recipe/claim",
+		return restCaller.postCall(serviceServerUrl + "/v1/recipe/claim",
 				claimRecipeParameter, String.class);
 	}
 }
