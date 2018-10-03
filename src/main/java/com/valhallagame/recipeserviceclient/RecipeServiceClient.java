@@ -8,6 +8,7 @@ import com.valhallagame.currencyserviceclient.message.LockCurrencyParameter;
 import com.valhallagame.recipeserviceclient.message.AddRecipeParameter;
 import com.valhallagame.recipeserviceclient.message.ClaimRecipeParameter;
 import com.valhallagame.recipeserviceclient.message.GetRecipesParameter;
+import com.valhallagame.recipeserviceclient.message.RemoveRecipeParameter;
 import com.valhallagame.recipeserviceclient.model.RecipeData;
 import com.valhallagame.wardrobeserviceclient.message.WardrobeItem;
 
@@ -48,5 +49,10 @@ public class RecipeServiceClient extends AbstractServiceClient {
 		ClaimRecipeParameter claimRecipeParameter = new ClaimRecipeParameter(characterName, recipe, currencies);
 		return restCaller.postCall(serviceServerUrl + "/v1/recipe/claim",
 				claimRecipeParameter, String.class);
+	}
+
+	public RestResponse<String> removeRecipe(String characterName, WardrobeItem recipe) throws IOException {
+		return this.restCaller.postCall(this.serviceServerUrl + "/v1/recipe/remove",
+				new RemoveRecipeParameter(characterName, recipe), String.class);
 	}
 }
