@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>recipe-service-client</artifactId>
-	<version>1.8</version>
+	<version>1.9</version>
 	<packaging>jar</packaging>
 	<groupId>com.valhallagame.valhalla</groupId>
 
@@ -51,11 +51,6 @@
 			<groupId>com.valhallagame.valhalla</groupId>
 			<artifactId>common</artifactId>
             <version>1.17</version>
-		</dependency>
-		<dependency>
-			<groupId>com.valhallagame.valhalla</groupId>
-			<artifactId>wardrobe-service-client</artifactId>
-            <version>1.5</version>
 		</dependency>
         <dependency>
             <groupId>com.valhallagame.valhalla</groupId>
