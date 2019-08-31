@@ -52,11 +52,6 @@
 			<artifactId>common</artifactId>
             <version>1.17</version>
 		</dependency>
-		<dependency>
-			<groupId>com.valhallagame.valhalla</groupId>
-			<artifactId>wardrobe-service-client</artifactId>
-            <version>1.5</version>
-		</dependency>
         <dependency>
             <groupId>com.valhallagame.valhalla</groupId>
             <artifactId>currency-service-client</artifactId>

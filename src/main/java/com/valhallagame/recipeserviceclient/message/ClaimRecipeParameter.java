@@ -2,7 +2,6 @@ package com.valhallagame.recipeserviceclient.message;
 
 import com.valhallagame.common.validation.CheckLowercase;
 import com.valhallagame.currencyserviceclient.model.CurrencyType;
-import com.valhallagame.wardrobeserviceclient.message.WardrobeItem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +18,8 @@ public class ClaimRecipeParameter {
     @CheckLowercase
     private String characterName;
 
-    @NotNull
-    private WardrobeItem recipe;
+    @NotBlank
+    private String recipe;
 
     @NotNull
     private Map<CurrencyType, Integer> currencies;
